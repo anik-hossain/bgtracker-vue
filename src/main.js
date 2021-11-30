@@ -6,4 +6,6 @@ import "./registerServiceWorker";
 import router from "./router";
 import store from "./store";
 
-createApp(App).use(router, axios, VueAxios, store).mount("#app");
+import "./assets/scss/style.scss";
+
+createApp(App).use(store).use(router, axios, VueAxios).mount("#app");
