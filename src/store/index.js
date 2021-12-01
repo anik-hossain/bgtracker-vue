@@ -1,7 +1,9 @@
-import { createStore } from 'vuex';
-import axios from 'axios';
+import Vue from 'vue';
+import Vuex from 'vuex';
 
-export default createStore({
+Vue.use(Vuex);
+
+export default new Vuex.Store({
     state: {
         user: {
             id: null,
@@ -19,8 +21,8 @@ export default createStore({
     actions: {
         async initialLoad(context) {
             if (localStorage.bgtrackerjwt) {
-                axios.defaults.headers.common.Authorization = `Bearer ${localStorage.bgtrackerjwt}`;
-                const result = await axios.get('/api/auth/currentUser');
+                Vue.axios.defaults.headers.common.Authorization = `Bearer ${localStorage.bgtrackerjwt}`;
+                const result = await Vue.axios.get('/api/auth/currentUser');
                 context.commit('CURRENT_USER_FETCHED', result.data);
             }
         },
